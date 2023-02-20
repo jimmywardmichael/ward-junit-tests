@@ -1,38 +1,40 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Student {
-
-    private long id;
+    ArrayList<Integer> grades;
     private String name;
-    private ArrayList<Integer> grades;
+    private long id;
 
-    public Student(long id, String name) {
-        this.id = id;
+    public Student(long id, String name){
         this.name = name;
+        this.id = id;
         this.grades = new ArrayList<>();
     }
 
-    public long getId() {
-        return this.id;
-    }
-
-    public String getName() {
+    public String getName(){
         return this.name;
     }
 
-    public ArrayList<Integer> getGrades() {
-        return this.grades;
+    public long getId(){
+        return this.id;
     }
 
-    public void addGrade(int grade) {
+    public void addGrade(int grade){
         this.grades.add(grade);
     }
 
-    public double getGradeAverage() {
-        double sum = 0;
-        for (int grade: this.grades) {
-            sum += grade;
+    // returns the average of the students grades
+    public double getGradeAverage(){
+        double result = 0;
+        for (int grade : this.getGrades()) {
+            result += grade;
         }
-        return sum / this.grades.size() ;
+        return result / this.getGrades().size();
     }
+
+    public ArrayList<Integer> getGrades(){
+        return this.grades;
+    }
+
 }

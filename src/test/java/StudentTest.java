@@ -1,41 +1,38 @@
+import org.junit.Before;
 import org.junit.Test;
-
+import static org.junit.Assert.*;
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-
 public class StudentTest {
-    @Test
-    public void testCreateStudent(){
-        Student fer = new Student(1L, "fer");
-        Student ryan = null;
-        assertNull(ryan);
-        assertNotNull(fer);
+
+    Student fer;
+    Student studentWithManyGrades;
+
+    @Before
+    public void init(){
+        fer = new Student(1, "Fernando M");
+        fer.addGrade(90);
+        studentWithManyGrades = new Student(2, "Trant B");
+        studentWithManyGrades.addGrade(90);
+        studentWithManyGrades.addGrade(80);
+        studentWithManyGrades.addGrade(50);
     }
 
     @Test
-    public void testStudentFields(){
-        Student fer = new Student(1L, "fer");
-        assertSame(1L, fer.getId());
-        assertSame("fer", fer.getName());
-        assertSame(0, fer.getGrades().size());
-    }
-
-
-    @Test
-    public void testAddGrade(){
-        Student fer = new Student(1L, "fer");
-        fer.addGrade(100);
-        assertSame(100, fer.getGrades().get(0));
-        fer.addGrade(80);
-        assertSame(80, fer.getGrades().get(1));
+    public void ifUserObjectCanBeCreated(){
+        assertEquals("Fernando M", fer.getName());
+        assertEquals(1, fer.getId());
     }
 
     @Test
-    public void testAverageGrade(){
-        Student fer = new Student(1L, "fer");
-        fer.addGrade(100);
-        fer.addGrade(80);
+    public void testIfAddGradeWorks(){
+        assertSame(90, fer.getGrades().get(0));
+    }
+
+    @Test
+    public void testIfAvgIsCorrect(){
         assertEquals(90, fer.getGradeAverage(), 0);
+        assertEquals(73.33333333333333, studentWithManyGrades.getGradeAverage(), 0);
     }
+
 }
